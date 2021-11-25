@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdbool.h>
 
 void check_argument_for_valid_option(char* arg);
 void process_requested_options(FILE* file);
@@ -8,10 +7,9 @@ long unsigned int get_line_count(FILE* file);
 long unsigned int get_file_size(FILE* file);
 long unsigned int get_word_count(FILE* file);
 
-bool
-    option_lines = false,
-    option_bytes = false,
-    option_words = false;
+char option_lines = 0;
+char option_bytes = 0;
+char option_words = 0;
 
 int main(int argc, char** argv)
 {
@@ -34,28 +32,28 @@ int main(int argc, char** argv)
 void check_argument_for_valid_option(char* arg)
 {
     if (strcmp(arg, "-l") == 0 || strcmp(arg, "--lines") == 0)
-        option_lines = true;
+        option_lines = 1;
 
     else if (strcmp(arg, "-c") == 0 || strcmp(arg, "--bytes") == 0)
-        option_bytes = true;
+        option_bytes = 1;
 
     else if (strcmp(arg, "-w") == 0 || strcmp(arg, "--words") == 0)
-        option_words = true;
+        option_words = 1;
 }
 
 void process_requested_options(FILE* file)
 {
-    if (option_lines)
+    if (option_lines == 1)
     {
         long unsigned int line_count = get_line_count(file);
         printf("Lines in file: %lu\n", line_count);
     }
-    if (option_bytes)
+    if (option_bytes == 1)
     {
         long unsigned int file_size = get_file_size(file);
         printf("File size in bytes: %lu\n", file_size);
     }
-    if (option_words)
+    if (option_words == 1)
     {
         long unsigned int word_count = get_word_count(file);
         printf("Words in file: %lu\n", word_count);

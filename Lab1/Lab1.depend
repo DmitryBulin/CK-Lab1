@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1637829778 source:d:\work\itmo\prog\ck-lab1\lab1\main.c
+	<stdio.h>
+	<string.h>
+
